@@ -1,0 +1,72 @@
+<div class="login-wrapper mt-3">
+  <h2>Zaloguj się:</h2>
+  <form #f="ngForm" (ngSubmit)="onLogin()">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Wpisz login</mat-label>
+        <input
+          matInput
+          required
+          name="username"
+          [(ngModel)]="userData.username"
+          minlength="4"
+          maxlength="30"
+        />
+      </mat-form-field>
+    </div>
+    <ng-container
+      *ngIf="
+        f.controls?.['username']?.invalid &&
+        f.controls?.['username']?.touched &&
+        f.controls?.['username']?.dirty
+      "
+    >
+      <app-alert
+        *ngIf="f.controls?.['username']?.errors"
+        [text]="'Ta kontrola musi mieć conajmniej 4 znaki i nie więcej niż 30'"
+      ></app-alert
+    ></ng-container>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Wpisz hasło</mat-label>
+        <input
+          matInput
+          required
+          [(ngModel)]="userData.password"
+          name="password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <ng-container
+      *ngIf="
+        f.controls?.['password']?.invalid &&
+        (f.controls?.['password']?.touched || f.controls?.['password']?.dirty)
+      "
+    >
+      <app-alert
+        *ngIf="f.controls?.['password']?.errors"
+        [text]="'Ta kontrolka nie moze byc pusta'"
+      ></app-alert
+    ></ng-container>
+    <div class="d-flex justify-content-end">
+      <button
+        type="submit"
+        [disabled]="!f.valid"
+        mat-raised-button
+        color="primary"
+      >
+        Zaloguj się
+      </button>
+    </div>
+  </form>
+</div>

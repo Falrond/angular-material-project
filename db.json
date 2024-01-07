@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "json-server",
+      "password": "typicode",
+      "username": "test123"
+    }
+  ],
+  "clients": [
+    {
+      "id": 1,
+      "firstname": "Test",
+      "surname": "Testowy",
+      "email": "test@gmail.com",
+      "phone": "123456789",
+      "address": "Miasto ul. Testowa 12",
+      "postcode": "90-364"
+    }
+  ]
+}
