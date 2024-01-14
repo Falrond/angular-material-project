@@ -3,7 +3,8 @@
     <span>App</span>
     <span class="example-spacer"></span>
     <button mat-button routerLink="/">Strona główna</button>
-    <button mat-button routerLink="/logowanie">Logowanie</button>
     <button mat-button routerLink="/klienci">Klienci</button>
+    <button mat-button routerLink="/logowanie" *ngIf="!user">Logowanie</button>
+    <button mat-button (click)="logout()" *ngIf="user">Wyloguj się</button>
   </mat-toolbar>
 </nav>

@@ -1,1 +1,68 @@
-<p>register works!</p>
+<div class="register-wrapper mt-3">
+  <h2>Zarejestruj się:</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Wpisz adres email</mat-label>
+        <input matInput placeholder="test@gmail.com" formControlName="email" />
+        <mat-error *ngIf="controls.email.invalid">{{
+          getErrorMessage(controls.email)
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Wpisz login</mat-label>
+        <input matInput formControlName="username" />
+        <mat-error *ngIf="controls.username.invalid">{{
+          getErrorMessage(controls.username)
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Wpisz hasło</mat-label>
+        <input
+          matInput
+          required
+          formControlName="password"
+          name="password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <mat-error *ngIf="controls.password.invalid">{{
+          getErrorMessage(controls.password)
+        }}</mat-error>
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <ng-container formArrayName="hobbies">
+      <div *ngFor="let hobby of hobbies.controls; index as i">
+        <input type="text" formControlName="i" />
+      </div>
+    </ng-container>
+    <div class="d-flex justify-content-end">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="registerForm.invalid"
+      >
+        Zarejestruj się
+      </button>
+    </div>
+    <div>
+      <p class="text-center">
+        Masz już konto? <a routerLink="/logowanie">Zaloguj się</a>
+      </p>
+    </div>
+  </form>
+  <app-alert *ngIf="errorMessage" [text]="errorMessage"></app-alert>
+</div>

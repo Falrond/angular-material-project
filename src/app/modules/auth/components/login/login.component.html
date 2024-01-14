@@ -68,5 +68,11 @@
         Zaloguj się
       </button>
     </div>
+    <div>
+      <p class="text-center">
+        Nie masz konta? <a routerLink="/rejestracja">Zarejestruj się!</a>
+      </p>
+    </div>
+    <app-alert *ngIf="errorMessage" [text]="errorMessage"></app-alert>
   </form>
 </div>
